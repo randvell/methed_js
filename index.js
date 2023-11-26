@@ -15,7 +15,8 @@ function requestValue(valueName, type = 'string') {
   const value = prompt(`${valueName}: `);
   if (type === 'number' && !isNaN(value)) {
     return value;
-  } else if (typeof(value) === type) {
+  }
+  if (type === 'string' && value.length) {
     return value;
   }
 
