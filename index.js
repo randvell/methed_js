@@ -13,7 +13,7 @@ const price = requestValue('Цена за шт', 'number');
 
 function requestValue(valueName, type = 'string') {
   const value = prompt(`${valueName}: `);
-  if (type === 'number' && !isNaN(value)) {
+  if (type === 'number' && !isNaN(parseInt(value))) {
     return value;
   }
   if (type === 'string' && value.length) {
