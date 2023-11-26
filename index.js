@@ -20,9 +20,10 @@ function requestValue(valueName, type = 'string') {
     return value;
   }
 
-  alert('Введены некорректные данные!');
-  return requestValue(valueName, type);
+  console.error('Введены некорректные данные!');
 }
 
-console.log(`На складе ${quantity} единицы товара "${productName}" 
+if (productName && productCategory && quantity && price) {
+  console.log(`На складе ${quantity} единицы товара "${productName}" 
 на сумму ${price * quantity} деревянных`);
+}
