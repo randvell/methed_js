@@ -1,11 +1,14 @@
-// const quantity = 3;
-// const productName = 'Спортивные штаны Adidas';
-// const productCategory = 'Брюки';
-// const price = 1800;
+{
+const quantity = 3;
+const productName = 'Спортивные штаны Adidas';
+const productCategory = 'Брюки';
+const price = 1800;
 
-// console.log('Товар: ' + productName);
-// console.log('Общая стоимость: ' + price * quantity);
+console.log('Товар: ' + productName);
+console.log('Общая стоимость: ' + price * quantity);
+}
 
+{
 const productName = requestValue('Наименование товара');
 const productCategory = requestValue('Категория товара')
 const quantity = requestValue('Кол-во товара', 'number');
@@ -14,9 +17,9 @@ const price = requestValue('Цена за шт', 'number');
 function requestValue(valueName, type = 'string') {
   const value = prompt(`${valueName}: `);
   if (type === 'number' && !isNaN(value)) {
-    return value;
+    return +value;
   }
-  if (type === 'string' && value.length) {
+  if (value.length) {
     return value;
   }
 
@@ -26,3 +29,4 @@ function requestValue(valueName, type = 'string') {
 
 console.log(`На складе ${quantity} единицы товара "${productName}" 
 на сумму ${price * quantity} деревянных`);
+}
