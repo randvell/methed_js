@@ -1,13 +1,22 @@
+'use strict';
+
 const income = prompt('Введите ваш заработок');
 const incomeAmount = parseFloat(income);
-
-let taxRate;
-if (incomeAmount > 50000) {
-  taxRate = 0.3;
-} else if (incomeAmount >= 15000) {
-  taxRate = 0.2;
+if (isNaN(incomeAmount) || incomeAmount < 0) {
+  console.error('Введено некорректное значение');
 } else {
-  taxRate = 0.13
+  const taxRate = calcTaxRate(income);
+  console.log('Размер налога: ' + taxRate * incomeAmount);
 }
 
-console.log('Размер налога: ' + taxRate * incomeAmount);
+function calcTaxRate(income) {
+  if (incomeAmount > 50000) {
+    return 0.3;
+  }
+  if (incomeAmount >= 15000) {
+    return 0.2;
+  }
+  if (income >= 0) {
+    return 0.13
+  }
+}

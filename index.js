@@ -1,29 +1,35 @@
-// const quantity = 3;
-// const productName = 'Спортивные штаны Adidas';
-// const productCategory = 'Брюки';
-// const price = 1800;
+'use strict';
 
-// console.log('Товар: ' + productName);
-// console.log('Общая стоимость: ' + price * quantity);
+{
+  const quantity = 3;
+  const productName = 'Спортивные штаны Adidas';
+  const productCategory = 'Брюки';
+  const price = 1800;
 
-const productName = requestValue('Наименование товара');
-const productCategory = requestValue('Категория товара')
-const quantity = requestValue('Кол-во товара', 'number');
-const price = requestValue('Цена за шт', 'number');
-
-function requestValue(valueName, type = 'string') {
-  const value = prompt(`${valueName}: `);
-  if (type === 'number' && !isNaN(parseInt(value))) {
-    return value;
-  }
-  if (type === 'string' && value.length) {
-    return value;
-  }
-
-  console.error('Введены некорректные данные!');
+  console.log('Товар: ' + productName);
+  console.log('Общая стоимость: ' + price * quantity);
 }
 
-if (productName && productCategory && quantity && price) {
-  console.log(`На складе ${quantity} единицы товара "${productName}" 
+{
+  const productName = requestValue('Наименование товара');
+  const productCategory = requestValue('Категория товара')
+  const quantity = requestValue('Кол-во товара', 'number');
+  const price = requestValue('Цена за шт', 'number');
+
+  function requestValue(valueName, type = 'string') {
+    const value = prompt(`${valueName}: `);
+    if (type === 'number' && !Number.isNaN(parseInt(value))) {
+      return +value;
+    }
+    if (value.length) {
+      return value;
+    }
+  }
+
+  if (productName && productCategory && quantity && price) {
+    console.log(`На складе ${quantity} единицы товара "${productName}" 
 на сумму ${price * quantity} деревянных`);
+  } else {
+    console.error('Введены некорректные данные!');
+  }
 }
