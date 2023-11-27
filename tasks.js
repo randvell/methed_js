@@ -14,8 +14,8 @@
 
   let totalScore = 0;
   for (let i = 0; i < exams.length; i++) {
-    const value = prompt('Введите кол-во баллов по ' + exams[i]);
-    if (Number.isNaN(parseInt(value))) {
+    const value = +prompt('Введите кол-во баллов по ' + exams[i]);
+    if (Number.isNaN(value)) {
       alert('Введено некорректное значение!');
     }
 
@@ -28,9 +28,8 @@
 }
 
 {
-  const withdrawalRequest = prompt('Сколько денег вы хотите снять?');
-  const parsedValue = parseInt(withdrawalRequest);
-  if (isNaN(parsedValue) || parsedValue % 100) {
+  const withdrawalRequest = +prompt('Сколько денег вы хотите снять?');
+  if (Number.isNaN(withdrawalRequest) || withdrawalRequest % 100) {
     console.log('К сожалению, банкомат не может выдать запрошенную сумму');
   } else {
     console.log('Заберите ваши деньги');

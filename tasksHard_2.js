@@ -1,8 +1,7 @@
 'use strict';
 
-const income = prompt('Введите ваш заработок');
-const incomeAmount = parseFloat(income);
-if (isNaN(incomeAmount) || incomeAmount < 0) {
+const income = +prompt('Введите ваш заработок');
+if (Number.isNaN(income) || income < 0) {
   console.error('Введено некорректное значение');
 } else {
   console.log('Размер налога: ' + calcTaxRate(income));
