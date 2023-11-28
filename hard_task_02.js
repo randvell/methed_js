@@ -1,6 +1,9 @@
 'use strict';
 
-const maxNumber = (a, b) => a - b > 0 ? a : b; 
-console.log('Большее из чисел 5, 19: ' + maxNumber(5, 19));
-console.log('Большее из чисел 44, 9: ' + maxNumber(44, 9));
-console.log('Большее из чисел -5, -3: ' + maxNumber(-5, -3));
+function findMin(a, b) {
+  return (a + b - Math.abs(a - b)) / 2;
+}
+
+console.log('Меньшее из чисел 5, 19: ' + findMin(5, 19));
+console.log('Меньшее из чисел 44, 9: ' + findMin(44, 9));
+console.log('Меньшее из чисел -5, -3: ' + findMin(-5, -3));
