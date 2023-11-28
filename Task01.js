@@ -1,16 +1,12 @@
 'use strict';
 
 {
-let table = [];
-for (let m = 1; m <= 10; m++) {
-  let values = [];
-  for (let a = 1; a <= 10; a++) {
-    values[a] = m ** a; 
+  const getPassedStudents = (studentList, failedList) => {
+    return studentList.filter((currentStudent) => !failedList.includes(currentStudent))
   }
 
-  table[m] = values;
-}
+  const allStudents = ['Иванов', 'Петров', 'Сидоров', 'Кузнецов', 'Смирнов', 'Попов', 'Соколов'];
+  const failedStudents = ['Сидоров', 'Смирнов', 'Попов'];
 
-console.log('Таблица степеней: ');
-console.table(table);
+  console.log('Сдавшие экзамен студенты: ' + getPassedStudents(allStudents, failedStudents).join(', '));
 }

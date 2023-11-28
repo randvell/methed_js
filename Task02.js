@@ -1,18 +1,18 @@
 'use strict';
 
 {
-  const isPrime = (number) => {
-    for (let i = 2; i < number; i++) {
-      if (number % i === 0) {
-        return false;
-      }
+  const getAverageValue = (checks) => {
+    let checksQuantity = 0;
+    let totalCheckAmount = 0;
+
+    for (const check of checks) {
+      checksQuantity++;
+      totalCheckAmount += check;
     }
 
-    return true;
-  };
-
-  for (let i = 0; i < 10; i++) {
-    const number = Math.round(Math.random() * 100);
-    console.log(`Число ${number} является ${isPrime(number) ? 'простым' : 'сложным'}`);
+    return totalCheckAmount / checksQuantity;
   }
+
+  const allCashbox = [4500, 3210, 650, 1250, 7830, 990, 13900, 370];
+  console.log('Средний чек за день: ' + getAverageValue(allCashbox));
 }

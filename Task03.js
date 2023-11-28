@@ -1,14 +1,8 @@
 'use strict';
 
 {
-  const revertString = (inputString) => {
-    let resultString = '';
-    for (let i = inputString.length - 1; i >= 0; i--) {
-      resultString += inputString[i];
-    }
+  const addPrefix = (values, prefix) => values.map((value) => prefix + ' ' + value);
 
-    return resultString;
-  }
-
-  console.log('Привет мир => ' + revertString('Привет мир'));
+  const names = ['Noah', 'Liam', 'Mason', 'Jacob', 'Robot', 'William', 'Ethan', 'Michael', 'Alexander'];
+  console.log(addPrefix(names, 'Mr').join(', '));
 }
