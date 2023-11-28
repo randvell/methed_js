@@ -1,8 +1,16 @@
 'use strict';
 
-const rateUsdEur = 1.2;
-const rateRubUsd = 73;
+{
+let table = [];
+for (let m = 1; m <= 10; m++) {
+  let values = [];
+  for (let a = 1; a <= 10; a++) {
+    values[a] = m ** a; 
+  }
 
-const convert = (price) => price * rateUsdEur * rateRubUsd;
-const priceRub = convert(10);
-console.log(`10 евро это ${priceRub} рублей`);
+  table[m] = values;
+}
+
+console.log('Таблица степеней: ');
+console.table(table);
+}

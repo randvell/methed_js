@@ -1,7 +1,18 @@
 'use strict';
 
-const processString = (inputString) => inputString[0].toUpperCase() + inputString.slice(1).toLowerCase();
+{
+  const isPrime = (number) => {
+    for (let i = 2; i < number; i++) {
+      if (number % i === 0) {
+        return false;
+      }
+    }
 
-let inputString = "пРиВет Мир";
-let result = processString(inputString);
-console.log(result);
+    return true;
+  };
+
+  for (let i = 0; i < 10; i++) {
+    const number = Math.round(Math.random() * 100);
+    console.log(`Число ${number} является ${isPrime(number) ? 'простым' : 'сложным'}`);
+  }
+}
