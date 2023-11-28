@@ -1,31 +1,16 @@
 'use strict';
 
-const income = +prompt('Введите ваш заработок');
-if (Number.isNaN(income) || income < 0) {
-  console.error('Введено некорректное значение');
-} else {
-  console.log('Размер налога: ' + calcTaxRate(income));
-}
-
-function calcTax(income) {
-  let taxAmount = 0;
-  let restIncome = income;
-
-  if (restIncome >= 0) {
-    incomeValue = restIncome - 15000 > 0 ? 15000 : restIncome;
-    taxAmount += restIncome * 0.13;
-    restIncome -= incomeValue;
+{
+  const income = +prompt('Введите ваш заработок');
+  if (Number.isNaN(income) || income < 0) {
+    console.error('Введено некорректное значение');
+  } else {
+    console.log('Размер налога: ' + calcTax(income));
   }
 
-  if (restIncome >= 0) {
-    incomeValue = restIncome - 35000 > 0 ? 35000 : restIncome;
-    taxAmount += restIncome * 0.2;
-    restIncome -= incomeValue;
+  function calcTax(income) {
+    Math.min(income, 15000) * 0.13 +
+      Math.max(0, Math.min(income - 15000, 50000 - 15000)) * 0.2 +
+      Math.max(0, income - 50000) * 0.3
   }
-
-  if (restIncome >= 0) {
-    taxAmount += restIncome * 0.3;
-  }
-
-  return taxAmount;
 }
