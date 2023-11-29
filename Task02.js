@@ -1,18 +1,19 @@
 'use strict';
 
 {
-  const getAverageValue = (checks) => {
-    let checksQuantity = 0;
-    let totalCheckAmount = 0;
-
-    for (const check of checks) {
-      checksQuantity++;
-      totalCheckAmount += check;
+  const getRandomArray = (count, n, m) => {
+    const arr = [];
+    const from = n > m ? m : n;
+    const to = n > m ? n : m;
+    for (let i = 0; i < count; i++) {
+      arr[i] = Math.round(Math.random() * (to - from) + from);
     }
 
-    return totalCheckAmount / checksQuantity;
+    return arr;
   }
 
-  const allCashbox = [4500, 3210, 650, 1250, 7830, 990, 13900, 370];
-  console.log('Средний чек за день: ' + getAverageValue(allCashbox));
+  console.log(getRandomArray(10, 1, 5));
+  console.log(getRandomArray(2, 10, 10))
+  console.log(getRandomArray(5, -100, 100))
+
 }

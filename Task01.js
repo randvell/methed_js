@@ -1,12 +1,14 @@
 'use strict';
 
 {
-  const getPassedStudents = (studentList, failedList) => {
-    return studentList.filter((currentStudent) => !failedList.includes(currentStudent))
+  const getRandomArray = (n) => {
+    const arr = [];
+    for (let i = 0; i < n; i++) {
+      arr[i] = Math.round(Math.random() * 100);
+    }
+
+    return arr;
   }
 
-  const allStudents = ['Иванов', 'Петров', 'Сидоров', 'Кузнецов', 'Смирнов', 'Попов', 'Соколов'];
-  const failedStudents = ['Сидоров', 'Смирнов', 'Попов'];
-
-  console.log('Сдавшие экзамен студенты: ' + getPassedStudents(allStudents, failedStudents).join(', '));
+  console.log(getRandomArray(10));
 }
