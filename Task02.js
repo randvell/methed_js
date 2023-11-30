@@ -2,9 +2,10 @@
 
 {
   const getRandomArray = (count, n, m) => {
+    const from = Math.min(n, m);
+    const to = Math.max(n, m);
+
     const arr = [];
-    const from = n > m ? m : n;
-    const to = n > m ? n : m;
     for (let i = 0; i < count; i++) {
       arr[i] = Math.round(Math.random() * (to - from) + from);
     }

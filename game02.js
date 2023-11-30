@@ -1,19 +1,32 @@
 'use strict';
 
 {
-  const guessTheNumber = (n, m) => {
-    const from = n > m ? m : n;
-    const to = n > m ? n : m;
+  const guessTheNumber = () => {
+    window.alert('Вы запустили игру "отгадай число". ' +
+    'В следующем окне вам будет предложено ввести нижний и верхний диапазон чисел для отгадывания, ' +
+    'после чего бот сообщит доступное число попыток');
 
-    let tries = Math.round((to - from) * 0.3);
+    const n = +prompt('Задайте нижний диапазон числа для отгадывания');
+    const m = +prompt('Задайте верхний диапазон числа для отгадывания');
+    if (Number.isNaN(n) || Number.isNaN(m)) {
+      window.alert('Вы ввели некорректный диапазон!');
+      return;
+    }
+
+    const from = Math.min(n, m);
+    const to = Math.max(n, m);
+
+    let tries = Math.round((to - from) * 0.3) || 1;
     const number = Math.round(Math.random() * (to - from) + from);
+    window.alert(`Бот загадал число от ${from} до ${to}. Попробуйте отгадать его. Всего у вас есть ${tries} попыток.`);
+
     const suggests = [];
-    do {
+    while (tries > 0) {
       tries--;
 
       let suggest = prompt('Какое число загадано?');
       if (suggest === null) {
-        console.log('Вы нажали отмену');
+        window.alert('Вы нажали отмену');
         break;
       }
 
@@ -49,12 +62,12 @@
         window.alert('Больше!');
         continue;
       }
-    } while (tries > 0);
+    }
 
     if (suggests) {
-      console.log('Ваши попытки: ' + suggests);
+      window.alert('Введенные вами числа: ' + suggests);
     }
   }
 
-  guessTheNumber(1, 10);
+  guessTheNumber();
 }

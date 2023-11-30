@@ -2,9 +2,10 @@
 
 {
   const getRandomArray = (count, n, m, type) => {
+    const from = Math.min(n, m);
+    const to = Math.max(n, m);
+
     const arr = [];
-    const from = n > m ? m : n;
-    const to = n > m ? n : m;
     for (let i = 0; i < count; i++) {
       let number = Math.round(Math.random() * (to - from) + from);
       if ((type === 'even' && number % 2 === 1) || (type === 'odd' && number % 2 === 0)) {

@@ -6,8 +6,8 @@
   }
   
   function getLeapYearsArray(n, m) {
-    const startYear = n > m ? m : n;
-    const endYear = n > m ? n : m;
+    const startYear = Math.min(n, m);
+    const endYear = Math.max(n, m);
   
     const leapYears = [];
     for (let year = startYear; year <= endYear; year++) {
