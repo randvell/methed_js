@@ -2,29 +2,39 @@
 
 const cart = {
   items: [],
-  totalPrice: 0,
-  count: 0,
-  getTotalPrice() {
-    return this.totalPrice
+  
+  get totalPrice() {
+    return this.calculateItemPrice();
   },
+  set totalPrice(value) {
+    return this.totalPrice;
+  },
+  get count() {
+    return this.calculateItemQuantity();
+  },
+  set count(value) {
+    return this.count;
+  },
+
   add(name, price, quantity) {
     const item = { name, price, quantity }
     this.items.push(item);
-    this.calculateItemPrice();
-    this.increaseCount(quantity);
   },
   increaseCount(n) {
     this.count += n;
   },
   calculateItemPrice() {
-    this.totalPrice = this.items.reduce((acc, item) => {
+    return this.items.reduce((acc, item) => {
       return acc + (item.price * item.quantity);
+    }, 0);
+  },
+  calculateItemQuantity() {
+    return this.items.reduce((acc, item) => {
+      return acc + item.quantity;
     }, 0);
   },
   clear() {
     this.items = [];
-    this.totalPrice = 0;
-    this.count = 0;
   },
   print() {
     console.log(JSON.stringify(this.items));
@@ -38,5 +48,10 @@ cart.add('Худи', 500, 3);
 cart.print();
 cart.add('Кроссовки', 1000, 1);
 cart.print();
+
+cart.count = 100;
+cart.totalPrice = 9999;
+cart.print();
+
 cart.clear();
 cart.print();
