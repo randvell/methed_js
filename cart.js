@@ -6,14 +6,8 @@ const cart = {
   get totalPrice() {
     return this.calculateItemPrice();
   },
-  set totalPrice(value) {
-    return this.totalPrice;
-  },
   get count() {
     return this.calculateItemQuantity();
-  },
-  set count(value) {
-    return this.count;
   },
 
   add(name, price, quantity) {
