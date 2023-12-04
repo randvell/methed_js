@@ -1,4 +1,4 @@
-'use strict';
+import {listIPv4} from './ipv4.js';
 
 const getUniqueIps = () => [...new Set(listIPv4)];
 
