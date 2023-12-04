@@ -1,3 +1,5 @@
+import { listIPv4 } from './ipv4.js';
+
 const getUniqueIps = () => [...new Set(listIPv4)];
 
 // Этот метод будет медленнее

@@ -43,9 +43,5 @@ cart.print();
 cart.add('Кроссовки', 1000, 1);
 cart.print();
 
-cart.count = 100;
-cart.totalPrice = 9999;
-cart.print();
-
 cart.clear();
 cart.print();
