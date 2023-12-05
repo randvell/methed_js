@@ -11,15 +11,27 @@ const game = {
       'верхний диапазон чисел для отгадывания, ' +
       'после чего бот сообщит доступное число попыток');
 
-    const n = +prompt('Задайте нижний диапазон числа для отгадывания');
+    const n = prompt('Задайте нижний диапазон числа для отгадывания');
+    if (!n) {
+      window.alert('Вы вышли из игры');
+      return;
+    }
+    const from = Number.parseInt(n);
+
     const m = +prompt('Задайте верхний диапазон числа для отгадывания');
-    if (Number.isNaN(n) || Number.isNaN(m)) {
+    if (!m) {
+      window.alert('Вы вышли из игры');
+      return;
+    }
+    const to = Number.parseInt(m);
+
+    if (Number.isNaN(n) || Number.isNaN(m) || from > to) {
       window.alert('Вы ввели некорректный диапазон!');
       return;
     }
 
-    this.from = Math.min(n, m);
-    this.to = Math.max(n, m);
+    this.from = from;
+    this.to = to;
 
     this.tries = Math.round((this.to - this.from) * 0.3) || 1;
     this.number = Math.round(Math.random() * (this.to - this.from) + this.from);
@@ -28,7 +40,7 @@ const game = {
 
     this.guessTheNumber();
 
-    if (this.suggests) {
+    if (this.suggests.length) {
       window.alert('Введенные вами числа: ' + this.suggests);
     }
   },
@@ -45,7 +57,7 @@ const game = {
 
     let suggest = prompt('Какое число загадано?');
     if (suggest === null) {
-      window.alert('Вы нажали отмену');
+      window.alert('Вы вышли из игры');
       return;
     }
 

@@ -5,7 +5,7 @@ const cart = {
   items: [],
 
   get totalPrice() {
-    return this.calculateItemPrice();
+    return this.calculateItemPrice() * (100 - this.discount) / 100;
   },
   get count() {
     return this.calculateItemQuantity();
@@ -19,7 +19,7 @@ const cart = {
   },
   calculateItemPrice() {
     return this.items.reduce((acc, item) =>
-      acc + ((item.price * item.quantity) / 100 * (100 - this.discount)), 0);
+      acc + ((item.price * item.quantity)), 0);
   },
   calculateItemQuantity() {
     return this.items.reduce((acc, item) => acc + item.quantity, 0);
