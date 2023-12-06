@@ -18,14 +18,14 @@ const game = {
     }
     const from = Number.parseInt(n);
 
-    const m = +prompt('Задайте верхний диапазон числа для отгадывания');
+    const m = prompt('Задайте верхний диапазон числа для отгадывания');
     if (!m) {
       window.alert('Вы вышли из игры');
       return;
     }
     const to = Number.parseInt(m);
 
-    if (Number.isNaN(n) || Number.isNaN(m) || from > to) {
+    if (Number.isNaN(to) || Number.isNaN(from) || from > to) {
       window.alert('Вы ввели некорректный диапазон!');
       return;
     }
