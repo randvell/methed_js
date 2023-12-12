@@ -1,4 +1,4 @@
 'use strict';
 
-const gameStart = window.createGame('ESP');
+const gameStart = window.marble();
 gameStart();

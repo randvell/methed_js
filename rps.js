@@ -177,5 +177,5 @@
     };
   };
 
-  window.createGame = game;
+  window.rps = game;
 })();
