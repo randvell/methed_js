@@ -1,4 +1,4 @@
 'use strict';
 
-const gameStart = window.createGame('ENG');
+const gameStart = window.createGame('ESP');
 gameStart();
