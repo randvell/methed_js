@@ -67,7 +67,7 @@
       },
     };
 
-    if (dict[text][_lang] !== undefined) {
+    if (dict?.[text]?.[_lang] !== undefined) {
       return dict[text][_lang];
     }
 
