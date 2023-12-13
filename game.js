@@ -17,62 +17,32 @@
     }
 
     const dict = {
-      'rock': {
-        ru: 'камень',
-      },
-      'scissors': {
-        ru: 'ножницы',
-      },
-      'paper': {
-        ru: 'бумага',
-      },
-      'Something went wrong': {
-        ru: 'Что-то пошло не так',
-      },
-      'A draw': {
-        ru: 'Ничья',
-      },
-      'You win': {
-        ru: 'Вы победили',
-      },
-      'You lose': {
-        ru: 'Вы проиграли',
-      },
-      'Unpredictable result': {
-        ru: 'Непредвиденный результат',
-      },
-      'Rock / Paper / Scissors ?': {
-        ru: 'Камень / Ножницы / Бумага ?',
-      },
-      'Game results:': {
-        ru: 'Результаты:',
-      },
-      'You: ': {
-        ru: 'Вы: ',
-      },
-      'Computer: ': {
-        ru: 'Компьютер: ',
-      },
-      'Result - ': {
-        ru: 'Результат - ',
-      },
-      'Are you sure? Press "OK" to leave': {
-        ru: 'Вы уверены? Нажмите "Ок" чтобы выйти',
-      },
-      'You left the game.': {
-        ru: 'Вы вышли из игры',
-      },
-      'Invalid input. Try again.': {
-        ru: 'Некорректный выбор. Попробуйте снова',
+      ru: {
+        'rock': 'камень',
+        'scissors': 'ножницы',
+        'paper': 'бумага',
+        'Something went wrong': 'Что-то пошло не так',
+        'A draw': 'Ничья',
+        'You win': 'Вы победили',
+        'You lose': 'Вы проиграли',
+        'Unpredictable result': 'Непредвиденный результат',
+        'Rock / Paper / Scissors ?': 'Камень / Ножницы / Бумага ?',
+        'Game results:': 'Результаты:',
+        'You: ': 'Вы: ',
+        'Computer: ': 'Компьютер: ',
+        'Result - ': 'Результат - ',
+        'Are you sure? Press "OK" to leave':
+          'Вы уверены? Нажмите "Ок" чтобы выйти',
+        'You left the game.': 'Вы вышли из игры',
+        'Invalid input. Try again.': 'Некорректный выбор. Попробуйте снова',
       },
     };
 
-    if (dict?.[text]?.[_lang] !== undefined) {
-      return dict[text][_lang];
+    if (dict?.[_lang]?.[text] !== undefined) {
+      return dict[_lang][text];
     }
 
     console.warn(`Отсутствует перевод для "${text}"`);
-
     return text;
   };
 
