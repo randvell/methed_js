@@ -93,21 +93,8 @@
 
   const getRoundResult = (player, computer) => (player - computer + 3) % 3;
 
-  const notifyGameResult = (result) => {
-    const message = _('Game results:') + '\n' +
-      _('You: ') + result.player + '\n' +
-      _('Computer: ') + result.computer;
-
-    window.alert(message);
-  };
-
   const game = (language = 'RUS') => {
     setLanguage(language);
-
-    const result = {
-      player: 0,
-      computer: 0,
-    };
 
     return function createGame() {
       const getChoice = () => {
@@ -138,16 +125,18 @@
           _(FIGURES[computerChoice]));
 
         let roundResultText;
+        let roundResultValue;
         switch (roundResult) {
           case 0:
+            roundResultValue = 0;
             roundResultText = _('A draw');
             break;
           case 1:
-            result.computer++;
+            roundResultValue = -1;
             roundResultText = _('You lose');
             break;
           case 2:
-            result.player++;
+            roundResultValue = 1;
             roundResultText = _('You win');
             break;
           default:
@@ -159,21 +148,25 @@
           _('Result - ') + roundResultText;
 
         window.alert(message);
+        return roundResultValue;
       };
 
       const turn = () => {
         const playerChoice = getChoice();
         if (playerChoice === null) {
-          notifyGameResult(result);
-          return;
+          return null;
         }
 
         const computerChoice = getComputerChoice();
-        processTurn(playerChoice, computerChoice);
+        const roundResult = processTurn(playerChoice, computerChoice);
+        if (roundResult) {
+          return roundResult;
+        }
+
         return turn();
       };
 
-      turn();
+      return turn();
     };
   };
 

@@ -9,7 +9,7 @@
 
 
   const game = () => {
-    window.alert('Игра начата. У вас каждого есть по 5 шариков. ' +
+    window.alert('Игра начата. У каждого игрока на старте есть по 5 шариков. ' +
       'Первым ходит игрок');
 
     const state = {
@@ -21,7 +21,8 @@
       '\nКомпьютер: ' + state.computer);
 
     const player = {
-      name: 'player',
+      key: 'player',
+      name: 'Игрок',
       guess: () => {
         const choice = window.prompt('Какое количество шариков ' +
           'загадал соперник? Введите ч / н');
@@ -62,13 +63,22 @@
     };
 
     const computer = {
-      name: 'computer',
+      key: 'computer',
+      name: 'Компьютер',
       guess: () => getRandomIntInclusive(0, 1),
       bet: () => getRandomIntInclusive(1, state.computer),
     };
 
-    let attacker = player;
-    let defendant = computer;
+    window.alert('Для определения порядка ходов будет сыграна ' +
+      'партия в "Камень Ножницы Бумага"');
+    const rpsResult = window.rps()();
+    if (rpsResult === null) {
+      return;
+    }
+
+    let attacker = rpsResult === 1 ? player : computer;
+    let defendant = rpsResult === 1 ? computer : player;
+    window.alert('Первым ходит ' + attacker.name);
 
     const turn = () => {
       const bet = attacker.bet();
@@ -83,30 +93,34 @@
         return;
       }
 
-      let resultString = attacker.name + ' ставит ' + bet + '\n' +
-        defendant.name + ' угадывает: ' +
+      let resultString = `${attacker.name} ставит #${bet}\n` +
+        `${defendant.name} угадывает: ` +
         (guess === 0 ? 'четное' : 'нечетное');
 
+      /* Правилами не оговорено, что игрок не может
+      поставить больше шариков, чем имеется у противника */
       if (bet % 2 === guess) {
-        state[attacker.name] -= bet;
-        state[defendant.name] += bet;
-        resultString += '\nПобеда за ' + defendant.name +
-          '\n' + getScoreString();
+        const maxValue = Math.min(bet, state[attacker.key]);
+        state[attacker.key] -= maxValue;
+        state[defendant.key] += maxValue;
+        resultString += `\n${defendant.name} забирает #${maxValue}` +
+          '\n\n' + getScoreString();
       } else {
-        state[attacker.name] += bet;
-        state[defendant.name] -= bet;
-        resultString += '\nПобеда за ' + attacker.name + '\n' +
-          getScoreString();
+        const maxValue = Math.min(bet, state[defendant.key]);
+        state[attacker.key] += maxValue;
+        state[defendant.key] -= maxValue;
+        resultString += `\n${attacker.name} забирает #${maxValue}` +
+          '\n\n' + getScoreString();
       }
 
       window.alert(resultString);
 
-      if (state.player <= 0) {
-        window.alert('Вы проиграли');
-        return;
-      }
-      if (state.computer <= 0) {
-        window.alert('Вы выиграли');
+      if (state.player <= 0 || state.computer <= 0) {
+        const gameResult = state.player <= 0 ? 'проиграли' : 'выиграли';
+        if (window.confirm(`Вы ${gameResult}. Хотите сыграть еще?`)) {
+          return game();
+        }
+
         return;
       }
 
@@ -114,6 +128,7 @@
       defendant = attacker;
       attacker = tempDefendant;
 
+      window.alert('Смена игроков. Теперь загадывает ' + attacker.name);
       turn();
     };
 
