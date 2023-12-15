@@ -8,33 +8,47 @@
     const choice = language.toLowerCase();
     if (choice === 'en' || choice === 'eng') {
       _lang = 'en';
+      return;
     }
   };
 
-  const _ = (text) => {
-    if (_lang === 'en') {
-      return text;
-    }
-
+  const tr = (text) => {
     const dict = {
       ru: {
-        'rock': 'камень',
-        'scissors': 'ножницы',
-        'paper': 'бумага',
-        'Something went wrong': 'Что-то пошло не так',
-        'A draw': 'Ничья',
-        'You win': 'Вы победили',
-        'You lose': 'Вы проиграли',
-        'Unpredictable result': 'Непредвиденный результат',
-        'Rock / Paper / Scissors ?': 'Камень / Ножницы / Бумага ?',
-        'Game results:': 'Результаты:',
-        'You: ': 'Вы: ',
-        'Computer: ': 'Компьютер: ',
-        'Result - ': 'Результат - ',
-        'Are you sure? Press "OK" to leave':
-          'Вы уверены? Нажмите "Ок" чтобы выйти',
-        'You left the game.': 'Вы вышли из игры',
-        'Invalid input. Try again.': 'Некорректный выбор. Попробуйте снова',
+        rock: 'камень',
+        scissors: 'ножницы',
+        paper: 'бумага',
+        gameError: 'Что-то пошло не так',
+        draw: 'Ничья',
+        win: 'Вы победили',
+        lost: 'Вы проиграли',
+        functionError: 'Непредвиденный результат',
+        roundStart: 'Камень / Ножницы / Бумага ?',
+        gameResult: 'Результаты:',
+        you: 'Вы: ',
+        computer: 'Компьютер: ',
+        result: 'Результат - ',
+        exitConfirmation: 'Вы уверены? Нажмите "Ок" чтобы выйти',
+        exitText: 'Вы вышли из игры',
+        invalidInput: 'Некорректный выбор. Попробуйте снова',
+      },
+      en: {
+        rock: 'rock',
+        scissors: 'scissors',
+        paper: 'paper',
+        gameError: 'Something went wrong',
+        draw: 'A draw',
+        win: 'You win',
+        lost: 'You lose',
+        functionError: 'Unpredictable result',
+        roundStart: 'Rock / Paper / Scissors ?',
+        gameResult: 'Game results:',
+        you: 'You: ',
+        computer: 'Computer: ',
+        result: 'Result - ',
+        exitConfirmation: 'Are you sure? Press "OK" to leave',
+        exitText: 'You left the game.',
+        invalidInput: 'Invalid input. Try again.',
       },
     };
 
@@ -52,7 +66,7 @@
     }
 
     return FIGURES.findIndex(figure =>
-      _(figure).startsWith(text.toLowerCase()));
+      tr(figure).startsWith(text.toLowerCase()));
   };
 
   const getRandomIntInclusive = (min, max) => {
@@ -64,9 +78,9 @@
   const getRoundResult = (player, computer) => (player - computer + 3) % 3;
 
   const notifyGameResult = (result) => {
-    const message = _('Game results:') + '\n' +
-      _('You: ') + result.player + '\n' +
-      _('Computer: ') + result.computer;
+    const message = tr('gameResult') + '\n' +
+      tr('you') + result.player + '\n' +
+      tr('computer') + result.computer;
 
     window.alert(message);
   };
@@ -81,10 +95,10 @@
 
     return function createGame() {
       const getChoice = () => {
-        const textChoice = window.prompt(_('Rock / Paper / Scissors ?'));
+        const textChoice = window.prompt(tr('roundStart'));
         if (textChoice === null) {
-          if (window.confirm(_('Are you sure? Press "OK" to leave'))) {
-            window.alert(_('You left the game.'));
+          if (window.confirm(tr('exitConfirmation'))) {
+            window.alert(tr('exitText'));
             return null;
           }
 
@@ -93,7 +107,7 @@
 
         const index = getFigureIndex(textChoice);
         if (index === -1) {
-          window.alert(_('Invalid input. Try again.'));
+          window.alert(tr('invalidInput'));
           return getChoice();
         }
 
@@ -104,29 +118,29 @@
 
       const processTurn = (playerChoice, computerChoice) => {
         const roundResult = getRoundResult(playerChoice, computerChoice);
-        console.log(_(FIGURES[playerChoice]) + ' / ' +
-          _(FIGURES[computerChoice]));
+        console.log(tr(FIGURES[playerChoice]) + ' / ' +
+          tr(FIGURES[computerChoice]));
 
         let roundResultText;
         switch (roundResult) {
           case 0:
-            roundResultText = _('A draw');
+            roundResultText = tr('draw');
             break;
           case 1:
             result.computer++;
-            roundResultText = _('You lose');
+            roundResultText = tr('lost');
             break;
           case 2:
             result.player++;
-            roundResultText = _('You win');
+            roundResultText = tr('win');
             break;
           default:
-            throw Error(_('Unpredictable result'));
+            throw Error(tr('functionError'));
         }
 
-        const message = _('You: ') + _(FIGURES[playerChoice]) + '\n' +
-          _('Computer: ') + _(FIGURES[computerChoice]) + '\n' +
-          _('Result - ') + roundResultText;
+        const message = tr('you') + tr(FIGURES[playerChoice]) + '\n' +
+          tr('computer') + tr(FIGURES[computerChoice]) + '\n' +
+          tr('result') + roundResultText;
 
         window.alert(message);
       };
