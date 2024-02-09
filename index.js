@@ -8,8 +8,10 @@ paragraph.textContent = 'Введите текст в поле выше';
 
 container.append(input, paragraph);
 
-input.addEventListener('change', (e) => {
-  setTimeout(() => {
-    paragraph.textContent = e.target.value;
+input.addEventListener('input', () => {
+  clearTimeout(this.timeout);
+
+  this.timeout = setTimeout(() => {
+    paragraph.textContent = input.value;
   }, 300);
 });
