@@ -55,3 +55,10 @@ while ((match = textRegex.exec(text))) {
   matches.push(match[1]);
 }
 console.log('Текст в скобках:', matches);
+
+const urlRegex = /(https?:\/\/)(.*?)(?=\s|$)/g;
+const urlSubst = '<a href="$1$2">$2</a>';
+const urlText =
+  'Check out this link: http://example.com and also this: https://mywebsite.ru';
+const replacedText = urlText.replace(urlRegex, urlSubst);
+console.log(replacedText);
